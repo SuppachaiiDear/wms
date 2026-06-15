@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Tables - SB Admin</title>
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+        <link href="assets/css/styles.css" rel="stylesheet" />
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="assets/js/layout.js"></script>
+    </head>
+    <body class="sb-nav-fixed">
+        <div id="navbar-container"></div>
+        <div id="layoutSidenav">
+            <div id="sidebar-container"></div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Products</h1>
+                        <div class="d-flex justify-content-end mb-3">
+
+                            <button
+                                class="btn btn-primary"
+                                data-bs-toggle="modal"
+                                data-bs-target="#productModal"
+                                onclick="clearProductForm()">
+
+                                <i class="fas fa-plus"></i>
+
+                                Add Product
+                            </button>
+
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-box me-1"></i>
+                                Product List
+                            </div>
+                            
+                            <div class="card-body">
+                                <table id="productsTable" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Code</th>
+                                            <th>Name</th>
+                                            <th>Category</th>
+                                            <th>Unit</th>
+                                            <th>Stock</th>
+                                            <th>Cost</th>
+                                            <th>Sell</th>
+                                            <th width="120">Action</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody id="productTable">
+                                        <tr>
+                                            <td colspan="8" class="text-center">
+                                                Loading...
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                <div id="footer-container"></div>
+            </div>
+        </div>
+
+        <div class="modal fade"
+            id="productModal"
+            tabindex="-1">
+
+            <div class="modal-dialog modal-lg">
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+
+                        <h5 class="modal-title"
+                            id="modalTitle">
+
+                            Add Product
+                        </h5>
+
+                        <button type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal">
+                        </button>
+
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+                                <label>Code</label>
+
+                                <input type="text"
+                                    id="code"
+                                    class="form-control">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label>Name</label>
+
+                                <input type="text"
+                                    id="name"
+                                    class="form-control">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label>Category</label>
+
+                                <select id="category_id"
+                                        class="form-select">
+
+                                    <option value="">
+                                        Select Category
+                                    </option>
+
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label>Unit</label>
+
+                                <select id="unit_id"
+                                        class="form-select">
+
+                                    <option value="">
+                                        Select Unit
+                                    </option>
+
+                                </select>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label>Cost Price</label>
+
+                                <input type="number"
+                                    id="cost_price"
+                                    class="form-control">
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label>Sell Price</label>
+
+                                <input type="number"
+                                    id="sell_price"
+                                    class="form-control">
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label>Minimum Stock</label>
+
+                                <input type="number"
+                                    id="minimum_stock"
+                                    class="form-control">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+
+                        <button type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal">
+
+                            Close
+                        </button>
+
+                        <button type="button"
+                                class="btn btn-primary"
+                                onclick="saveProduct()">
+
+                            Save Product
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="assets/js/products.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="assets/js/scripts.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    </body>
+</html>

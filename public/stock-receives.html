@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Tables - SB Admin</title>
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+        <link href="assets/css/styles.css" rel="stylesheet" />
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="assets/js/layout.js"></script>
+    </head>
+    <body class="sb-nav-fixed">
+        <div id="navbar-container"></div>
+        <div id="layoutSidenav">
+            <div id="sidebar-container"></div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Stock Receive</h1>
+
+                        <div class="d-flex justify-content-end mb-3">
+                            <button
+                                class="btn btn-primary"
+                                data-bs-toggle="modal"
+                                data-bs-target="#receiveModal"
+                                onclick="clearReceiveForm()">
+
+                                <i class="fas fa-plus"></i>
+                                Add Receive
+                            </button>
+                        </div>
+
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-arrow-down me-1"></i>
+                                Receive List
+                            </div>
+
+                            <div class="card-body">
+                                <table id="receiveTable" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Receive No</th>
+                                            <th>Date</th>
+                                            <th>Supplier</th>
+                                            <th>Remark</th>
+                                            <th>Created By</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody id="receiveTableBody">
+                                        <tr>
+                                            <td colspan="5" class="text-center">
+                                                Loading...
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                <div id="footer-container"></div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="receiveModal" tabindex="-1">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Stock Receive</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label>Receive No</label>
+                                <input type="text" id="receive_no" class="form-control">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label>Supplier</label>
+                                <input type="text" id="supplier_name" class="form-control">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label>Remark</label>
+                                <input type="text" id="remark" class="form-control">
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="row mb-3">
+                            <div class="col-md-5">
+                                <label>Product</label>
+                                <select id="product_id" class="form-select">
+                                    <option value="">Select Product</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label>Qty</label>
+                                <input type="number" id="qty" class="form-control">
+                            </div>
+
+                            <div class="col-md-2">
+                                <label>Cost Price</label>
+                                <input type="number" id="cost_price" class="form-control">
+                            </div>
+
+                            <div class="col-md-3 d-flex align-items-end">
+                                <button class="btn btn-success w-100" onclick="addReceiveItem()">
+                                    <i class="fas fa-plus"></i>
+                                    Add Item
+                                </button>
+                            </div>
+                        </div>
+
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Qty</th>
+                                    <th>Cost</th>
+                                    <th>Total</th>
+                                    <th width="80">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="receiveItemsTable"></tbody>
+                        </table>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">
+                            Close
+                        </button>
+
+                        <button class="btn btn-primary" onclick="saveReceive()">
+                            Save Receive
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"></script>
+        <script src="assets/js/stock-receives.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="assets/js/scripts.js"></script>
+    </body>
+</html>
