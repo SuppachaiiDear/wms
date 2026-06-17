@@ -2,27 +2,22 @@ const express = require('express');
 
 const router = express.Router();
 
-const { authorize } =
-    require('../middleware/auth');
+const { authorize } = require('../middleware/auth');
 
 const {
-    getIssues,
-    createIssue
-} = require(
-    '../controllers/stockIssueController'
-);
+    getStockIssues,
+    getStockIssueById,
+    createStockIssue
+} = require('../controllers/stockIssueController');
 
+router.get('/', getStockIssues);
 
-router.get(
-    '/',
-    getIssues
-);
-
+router.get('/:id', getStockIssueById);
 
 router.post(
     '/',
     authorize('admin', 'stock'),
-    createIssue
+    createStockIssue
 );
 
 module.exports = router;
