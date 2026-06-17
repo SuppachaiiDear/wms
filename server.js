@@ -32,7 +32,7 @@ const stockReceiveRoutes = require('./routes/stockReceives');
 const stockIssueRoutes = require('./routes/stockIssues');
 const stockMovementRoutes = require('./routes/stockMovements');
 const dashboardRoutes = require('./routes/dashboard');
-
+const supplierRoutes = require('./routers/suppliers');
 
 // Public Routes
 app.use('/api/auth', authRoutes);
@@ -75,6 +75,12 @@ app.use(
     '/api/stock-movements',
     verifyToken,
     stockMovementRoutes
+);
+
+app.use(
+    '/api/suppliers',
+    verifyToken,
+    supplierRoutes
 );
 
 app.use(
