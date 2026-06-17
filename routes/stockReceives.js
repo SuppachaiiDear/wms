@@ -5,10 +5,13 @@ const { authorize } = require('../middleware/auth');
 
 const {
     getStockReceives,
+    getStockReceiveById,
     createStockReceive
 } = require('../controllers/stockReceiveController');
 
 router.get('/', getStockReceives);
+
+router.get('/:id', getStockReceiveById);
 
 router.post(
     '/',

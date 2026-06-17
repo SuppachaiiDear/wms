@@ -20,6 +20,63 @@ const getStockReceives = async (req, res) => {
     }
 };
 
+const getStockReceiveById = async (req, res) => {
+    try {
+        const pool = await db;
+
+        const headerResult = await pool
+            .request()
+            .input('id', req.params.id)
+            .query(`
+                SELECT
+                    sr.id,
+                    sr.receive_no,
+                    sr.supplier_name,
+                    sr.remark,
+                    sr.receive_date,
+                    sr.created_by
+                FROM stock_receives sr
+                WHERE sr.id = @id
+            `);
+
+        if (headerResult.recordset.length === 0) {
+            return res.status(404).json({
+                message: 'Stock receive not found'
+            });
+        }
+
+        const detailResult = await pool
+            .request()
+            .input('receive_id', req.params.id)
+            .query(`
+                SELECT
+                    srd.id,
+                    srd.product_id,
+                    p.code AS product_code,
+                    p.name AS product_name,
+                    u.name AS unit_name,
+                    srd.qty,
+                    srd.cost_price,
+                    srd.total
+                FROM stock_receive_details srd
+                INNER JOIN products p ON srd.product_id = p.id
+                LEFT JOIN units u ON p.unit_id = u.id
+                WHERE srd.receive_id = @receive_id
+                ORDER BY srd.id ASC
+            `);
+
+        res.json({
+            header: headerResult.recordset[0],
+            details: detailResult.recordset
+        });
+
+    } catch (err) {
+        res.status(500).json({
+            message: err.message
+        });
+    }
+};
+
 const createStockReceive = async (req, res) => {
     const pool = await db;
     const transaction = new sql.Transaction(pool);
@@ -167,5 +224,6 @@ const createStockReceive = async (req, res) => {
 
 module.exports = {
     getStockReceives,
+    getStockReceiveById,
     createStockReceive
 };

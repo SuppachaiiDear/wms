@@ -34,6 +34,11 @@ const loadReceives = async () => {
                     <td>${item.supplier_name || ''}</td>
                     <td>${item.remark || ''}</td>
                     <td>${item.created_by || ''}</td>
+                    <td>
+                        <a href="stock-receive-detail.html?id=${item.id}" class="btn btn-info btn-sm">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                    </td>
                 </tr>
             `;
         });
